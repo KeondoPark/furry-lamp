@@ -29,6 +29,31 @@ for (i in 1:RowNum){
 # plot(1:15, wss, type="b", xlab="Number of Clusters",
 #      ylab="Within groups sum of squares")
 # 
+
+#-----------Sohyun Test: Start
+#reference page: http://www.sthda.com/english/wiki/partitioning-cluster-analysis-quick-start-guide-unsupervised-machine-learning#pam-partitioning-around-medoids
+#k-means 
+#library(cluster)
+#library(factoextra)
+fit2 <- kmeans(mydata, centers = 2, iter.max =10)
+fit2$cluster
+fit2$size
+fit2$centers
+fviz_cluster(fit2, data=mydata)
+
+fviz_nbclust(mydata, kmeans, method = "wss") +  geom_vline(xintercept = 4, linetype = 2) 
+#wss (within sum of square) is drawn according to the number of clusters
+#can choose k=3~4 with the location of a bend in the plot
+graphics.off()
+
+fviz_nbclust(mydata, pam, method ="silhouette" ) 
+#can choose k=2 with the location of a bend in the plot
+
+#check cluster plot
+fviz_cluster(fit2, data = mydata)
+#-----------Sohyun Test: End
+
+
 # #Import library
 # library(fpc)
 # 
