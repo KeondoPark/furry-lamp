@@ -51,7 +51,18 @@ fviz_nbclust(mydata, pam, method ="silhouette" )
 
 #check cluster plot
 fviz_cluster(fit2, data = mydata)
+
+
+
+#pam
+fit.pam <- pam(mydata, 2)
+head(fit.pam$medoids)
+clusplot(fit.pam, main = "Cluster plot, k = 2", color = TRUE)
+fviz_nbclust(mydata, pam, method = "wss") +  geom_vline(xintercept = 2, linetype = 2)
+fviz_cluster(fit.pam, data = mydata)
+fviz_silhouette(silhouette(fit.pam))
 #-----------Sohyun Test: End
+
 
 
 # #Import library
